@@ -57,8 +57,20 @@ class Bivector
       when 'rad'
         return angle
       when 'ang'
-        return angle * 360 / Math::PI
+        return angle * 180 / Math::PI
       end
+    end
+  end
+  
+  def parallels_to?(another)
+    if another.is_a? Bivector
+      self.zero? || another.zero? || x * another.y - y * another.x == 0
+    end
+  end
+  
+  def perpendicular_to?(another)
+    if another.is_a? Bivector
+      self.dot_product(another) == 0
     end
   end
 end

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'bivector'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.date        = '2013-02-17'
   s.description = "A 2D Vector"
   s.authors     = ["Hegwin Wang"]
