@@ -14,21 +14,19 @@ class BivectorTest < Test::Unit::TestCase
   def test_plus
     expect = Bivector.new(4, 4)
     result = @v1 + @v3
-    assert_equal expect.x, result.x
-    assert_equal expect.y, result.y 
+    assert(expect == result)
   end
 
   def test_minus
     expect = Bivector.new(4, 5)
     result = @v3 - @v5
-    assert_equal expect.x, result.x
-    assert_equal expect.y, result.y
+    assert(expect == result)
   end
 
   def test_mutiplied_by_a_number
     expect = Bivector.new(1.5, 2)
     result = @v3 * 0.5
-    flunk
+    assert(expect == result)
   end
 
   def test_norm

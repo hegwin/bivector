@@ -4,6 +4,14 @@ class Bivector
   def initialize(xCoordinate, yCoordinate)
     @x, @y = xCoordinate, yCoordinate
   end
+  
+  def to_s
+    "(#{x}, #{y})"
+  end
+  
+  def ==(another)
+    another.is_a?(Bivector) && x == another.x && y == another.y
+  end
 
   def +(another)
     if another.is_a? Bivector
@@ -18,6 +26,9 @@ class Bivector
   end
 
   def *(aNumber)
+    if aNumber.is_a? Numeric
+      Bivector.new(x * aNumber, y * aNumber)
+    end
   end
 
   def norm
