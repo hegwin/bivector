@@ -50,13 +50,13 @@ class Bivector
     Bivector.new(x / norm, y / norm)
   end
 
-  def angles_to(another, style = 'rad')
+  def angles_to(another, style = :rad)
     if another.is_a? Bivector
       angle = Math.acos(dot_product(another) / ( norm * another.norm))
       case style
-      when 'rad'
+      when :rad
         return angle
-      when 'ang'
+      when :ang
         return angle * 180 / Math::PI
       end
     end
