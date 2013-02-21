@@ -93,3 +93,29 @@ class Bivector
     "(#{norm}, #{theta})"
   end
 end
+
+module BV
+  class Angle
+    attr :value, :model
+
+    def initialize(value, model = :rad)
+      @value = value
+      @model = model
+    end
+
+    def to_s
+      value
+    end
+
+    def rad_value
+      case model
+      when :rad then value
+      when :ang then value * 180 / Math::PI
+      end
+    end
+
+    def tan
+      Math.tan(rad_value)
+    end
+  end
+end

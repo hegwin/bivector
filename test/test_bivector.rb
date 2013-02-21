@@ -61,6 +61,7 @@ class BivectorTest < Test::Unit::TestCase
 
   def test_theta
     assert_in_delta 0, @v1.theta, 0.0001
+    assert_in_delta 45, @v2.theta, 0.0001
     assert_in_delta 225, @v5.theta * 180 / Math::PI, 0.0001
   end
 end
