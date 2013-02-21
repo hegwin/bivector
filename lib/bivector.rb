@@ -84,4 +84,12 @@ class Bivector
       self.dot_product(another) == 0
     end
   end
+
+  def theta
+    Math.atan(y/x)
+  end
+
+  def polar
+    "(#{norm}, #{theta})"
+  end
 end
