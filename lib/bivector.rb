@@ -63,13 +63,7 @@ class Bivector
 
   def angles_to(another, style = :rad)
     if another.is_a? Bivector
-      angle = Math.acos(dot_product(another) / ( norm * another.norm))
-      case style
-      when :rad
-        return angle
-      when :ang
-        return angle * 180 / Math::PI
-      end
+      BV::Angle.new(Math.acos(dot_product(another) / ( norm * another.norm))).values_in(style)
     end
   end
   
@@ -85,8 +79,8 @@ class Bivector
     end
   end
 
-  def theta
-    Math.atan(y/x)
+  def theta(style = :rad)
+    BV::Angle.new(Math.atan(y/x)).values_in(style)
   end
 
   def polar
@@ -107,15 +101,27 @@ module BV
       value
     end
 
-    def rad_value
+    def switch_model
       case model
-      when :rad then value
-      when :ang then value * 180 / Math::PI
-      end
+      when :ang then rad_value
+      when :rad then ang_value
+      end 
+    end
+
+    def rad_value
+      model == :rad ? value : value * Math::PI / 180
+    end
+
+    def ang_value
+      model == :ang ? value : value * 180 / Math::PI
+    end
+
+    def values_in(style = :rad)
+      style == model ? value : switch_model
     end
 
     def tan
-      Math.tan(rad_value)
+      Math.tan(self.rad_value)
     end
   end
 end
